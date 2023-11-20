@@ -243,12 +243,9 @@ void checkForCurrentUser(BuildContext context) async {
   final otherJson = prefs.getString('otherUser');
 
   if (userJson != null) {
-    // User data is available, navigate to the home page
-    print(userJson);
+
     final data = jsonDecode(userJson);
     User user = User.fromJson(data);
-
-    // Set the current user
     setCurrentUser(context: context, val: user);
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
@@ -257,7 +254,6 @@ void checkForCurrentUser(BuildContext context) async {
     );
   }
   if (otherJson != null) {
-    print(otherJson);
     final data = jsonDecode(otherJson);
     User user = User.fromJson(data);
 

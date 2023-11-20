@@ -479,7 +479,6 @@ void checkForotherUser(BuildContext context) async {
   final userJson = prefs.getString('otherUser');
 
   if (userJson != null) {
-    print(userJson);
     final data = jsonDecode(userJson);
     User user = User.fromJson(data);
     setOtherUser(context: context, val: user);

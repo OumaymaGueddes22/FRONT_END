@@ -34,15 +34,11 @@ class MessageService{
     };
     final response = await http.post(Uri.parse(baseUrl + '/createMsg' ),headers: headers,  body: jsonEncode(message.toJson())
     );
-    print(response.statusCode);
-    print(jsonDecode(response.body));
     return response;
 
   }
   Future<http.Response> getAllMessages(context) async {
     final response = await http.get(Uri.parse(baseUrl + '/allmesg'));
-    print(response.statusCode);
-
     List messages = jsonDecode(response.body);
     List<Message> allMessages = messages.map((e) => Message.fromJson(e)).toList();
     setAllMessages(context: context, val: allMessages);

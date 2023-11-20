@@ -114,9 +114,7 @@ class _ChatInputFieldState extends State<ChatInputField> {
                     IconButton(onPressed: ()async{
                       if(tcontroller.text .toString().isNotEmpty){
                         Message message = new Message(id: '', txt: tcontroller.text.toString(), type: 'type', sender: currentUser.id!, reciever: otherUser.id!);
-                        print(message.sender);
-                        print(message.reciever);
-                        print(message.txt);
+
                         var responce = await messageService.createMessage(message);
                         if (responce.statusCode == 201){
                           widget.client.send(

@@ -34,7 +34,7 @@ class _BodyState extends State<Body> {
     _loadMessages();
      client = StompClient(
       config: StompConfig(
-        url: 'ws://localhost:8080/ws',
+        url: 'ws://192.168.56.1:8080/ws',
         onConnect: onConnectCallback,
       ),
     );
@@ -42,7 +42,7 @@ class _BodyState extends State<Body> {
 
   }
   void onConnectCallback(StompFrame frame){
-    print('connected');
+
     Future.delayed(Duration(seconds: 1), () async {
       try {
         await client.subscribe(
@@ -53,17 +53,12 @@ class _BodyState extends State<Body> {
               Message receivedMessage = Message.fromJson(jsonDecode(frame.body!));
               List<Message> all = getAllMessages(context);
               all.add(receivedMessage);
-              print(getAllMessages(context).length);
               setAllMessages(context: context, val: all);
               setState(() {
 
               });
-
-
-            print('Received message: ${frame.body}');
           },
         );
-        print('Subscription successful');
       } catch (e) {
         print('Error subscribing: $e');
       }
@@ -79,6 +74,11 @@ class _BodyState extends State<Body> {
     MessageService messageServices = MessageService();
     await messageServices.getAllMessages(context);
     setState(() {}); // Trigger a rebuild after loading messages
+  }
+  @override
+  void dispose() {
+    client.deactivate();
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {

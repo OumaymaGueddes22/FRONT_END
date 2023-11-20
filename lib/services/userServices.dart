@@ -12,9 +12,6 @@ class UserServices{
   Future<http.Response> createUser(User user) async{
     final response = await http.post(Uri.parse(baseUrl + '/api/v1/auth/register' ),  body: user.toJson()
     );
-    print(response.statusCode);
-    print(jsonDecode(response.body));
-    print('object');
     return response;
 
   }
@@ -41,7 +38,6 @@ class UserServices{
 
   Future<http.Response> getAllUsers(context) async {
       final response = await http.get(Uri.parse(baseUrl + '/api/v1/users/allUsers'));
-      print(response.statusCode);
       List allUsers = jsonDecode(response.body);
       List<User> users = allUsers.map((e) => User.fromJson(e)).toList();
       setAllUsers(context: context, val: users);
