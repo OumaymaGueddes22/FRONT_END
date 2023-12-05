@@ -1,4 +1,0 @@
-#Mon Nov 20 18:31:21 CET 2023
-base.0=C\:\\Users\\LENOVO\\Desktop\\FRONT_END-main\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
